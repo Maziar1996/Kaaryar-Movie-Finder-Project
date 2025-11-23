@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movies & Series</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
     <!-- Navigation Bar -->
     <header class="header">
       <div class="container">
-        <h1 class="logo">Movie Finder</h1>
+        <h1 class="logo desktop">Movie Finder</h1>
         <!-- Search Bar -->
         <div class="search-container">
           <input
@@ -21,12 +21,22 @@
           />
           <button id="search-button">Magnifier</button>
         </div>
-        <!-- Dropdown Menu -->
-        <div class="genre-dropdown">
+        <div class="genre-dropdown desktop">
           <button id="genre-button">Genres <i>Down</i></button>
-          <div class="genre-list"></div>
+          <div id="genre-list" class="dropdown-content hidden"></div>
+        </div>
+        <!-- Hamburger Menu -->
+        <button class="hamburger" id="hamburger-btn">☰</button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <h1 class="logo">MOVIE FINDER</h1>
+        <div class="genre-dropdown">
+          <button id="genre-button-mobile">Genres <i>Down</i></button>
+          <div id="genre-list-mobile" class="dropdown-content hidden"></div>
         </div>
       </div>
+      <div class="overlay" id="overlay"></div>
     </header>
     <!-- Hero Section - Slideshow -->
     <section id="hero" class="hero-section">
