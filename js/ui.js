@@ -26,21 +26,40 @@ export function renderSkeleton(grid, count = 6) {
     grid.appendChild(skeleton);
   }
 }
+// Genre
 
+let GENRES = {};
+
+export function setGenres(genresList) {
+  GENRES = {};
+  genresList.forEach((genre) => (GENRES[genre.id] = genre.name));
+}
+
+export function getGenreNames(ids = []) {
+  return ids
+    .map((id) => GENRES[id])
+    .filter(Boolean)
+    .join(", ");
+}
 // Render Movie Card
 
-export function renderMovieCard(grid, details) {
+export function renderMovieCard(grid, movie) {
   const card = document.createElement("div");
   card.classList.add("movie-card");
 
   const img = document.createElement("img");
-  img.src =
-    details.Poster && details.Poster !== "N/A"
-      ? details.Poster
-      : OMDB.DEFAULT_POSTER;
+  const posterPath = movie.poster_path || movie.Poster;
+  const posterUrl = posterPath
+    ? `${TMDB.IMG_URL}w500${posterPath}`
+    : TMDB.DEFAULT_POSTER;
 
-  img.alt = details.Title;
-
+  img.src = posterUrl;
+  img.onerror = function () {
+    this.onerror = null;
+    this.src = TMDB.DEFAULT_POSTER;
+  };
+  img.alt = movie.Title || "Movie poster";
+  img.loading = "lazy";
   const info = document.createElement("div");
   info.classList.add("movie-info");
 
@@ -49,11 +68,11 @@ export function renderMovieCard(grid, details) {
 
   const title = document.createElement("h3");
   title.classList.add("movie-title");
-  title.textContent = details.Title;
+  title.textContent = movie.Title;
 
   const year = document.createElement("span");
   year.classList.add("movie-year");
-  year.textContent = details.Year;
+  year.textContent = movie.Year;
 
   titleRow.appendChild(title);
   titleRow.appendChild(year);
@@ -61,7 +80,7 @@ export function renderMovieCard(grid, details) {
 
   const genre = document.createElement("p");
   genre.classList.add("movie-genre");
-  genre.textContent = details.Genre || "Unknown";
+  genre.textContent = movie.Genre || "Unknown";
   info.appendChild(genre);
 
   const bottomRow = document.createElement("div");
@@ -70,15 +89,15 @@ export function renderMovieCard(grid, details) {
   const rating = document.createElement("span");
   rating.classList.add("movie-rating");
   rating.textContent =
-    details.imdbRating && details.imdbRating !== "N/A"
-      ? `⭐ ${details.imdbRating}/10`
+    movie.imdbRating && movie.imdbRating !== "N/A"
+      ? `⭐ ${movie.imdbRating}/10`
       : "⭐ -";
 
   const viewBtn = document.createElement("button");
   viewBtn.textContent = "View Info";
   viewBtn.classList.add("view-btn");
   viewBtn.onclick = () => {
-    window.location.href = `pages/movie-details.html?id=${details.imdbID}`;
+    window.location.href = `pages/movie-details.html?id=${movie.id}`;
   };
 
   bottomRow.appendChild(rating);
@@ -101,28 +120,50 @@ export function renderPagination(
   container.innerHTML = "";
 
   const prevBtn = document.createElement("button");
-  prevBtn.textContent = "Previous";
+  prevBtn.textContent = "<";
   prevBtn.disabled = currentPage === 1;
   prevBtn.onclick = () => onPageChange(currentPage - 1);
-
-  const nextBtn = document.createElement("button");
-  nextBtn.textContent = "Next";
-  if (totalPages) {
-    nextBtn.disabled = currentPage === totalPages;
-  }
-  nextBtn.onclick = () => onPageChange(currentPage + 1);
-
   container.appendChild(prevBtn);
 
-  if (totalPages) {
-    for (let i = 1; i <= totalPages; i++) {
-      const pageBtn = document.createElement("button");
-      pageBtn.textContent = i;
-      if (i === currentPage) pageBtn.classList.add("active");
-      pageBtn.onclick = () => onPageChange(i);
-      container.appendChild(pageBtn);
+  const startPage = Math.max(1, currentPage - 2);
+  const endPage = Math.min(totalPages || currentPage + 5, currentPage + 4);
+
+  if (startPage > 1) {
+    const first = document.createElement("button");
+    first.textContent = "1";
+    first.onclick = () => onPageChange(1);
+    container.appendChild(first);
+
+    if (startPage > 2) {
+      const dots = document.createElement("span");
+      dots.textContent = "...";
+      dots.style.margin = "0 10px";
+      container.appendChild(dots);
     }
   }
 
+  for (let i = startPage; i <= endPage; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.textContent = i;
+    if (i === currentPage) pageBtn.classList.add("active");
+    pageBtn.onclick = () => onPageChange(i);
+    container.appendChild(pageBtn);
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      const dots = document.createElement("span");
+      dots.textContent = "...";
+      dots.style.margin = "0 10px";
+      container.appendChild(dots);
+    }
+    const last = document.createElement("button");
+    last.textContent = totalPages;
+    last.onclick = () => onPageChange(totalPages);
+    container.appendChild(last);
+  }
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = ">";
+  nextBtn.onclick = () => onPageChange(currentPage + 1);
   container.appendChild(nextBtn);
 }

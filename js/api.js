@@ -1,36 +1,97 @@
-const OMDB_API_KEY = "9decd8f5";
-const OMDB_BASE_URL = "https://www.omdbapi.com/";
+const TMDB_API_KEY = "fc059bc1b9bc62f15639c5474b4fbe62";
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_IMG = "https://image.tmdb.org/t/p/";
 
-async function searchMovies(query = "movie", page = 1) {
-  const url = `${OMDB_BASE_URL}?apikey=${OMDB_API_KEY}&s=${query}&page=${page}&type=movie`;
+function buildUrl(path, params = {}) {
+  const url = new URL(TMDB_BASE_URL + path);
+  url.searchParams.set("api_key", TMDB_API_KEY);
+  url.searchParams.set("language", "en-US");
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, value);
+    }
+  });
+  return url.toString();
+}
+
+async function searchMovies(query, page = 1) {
   try {
+    const url = buildUrl("/search/movie", { query, page });
     const response = await fetch(url);
     const data = await response.json();
-    if (data.Response === "False") {
-      return [];
-    }
-    return data.Search || [];
+
+    return data.results || [];
   } catch (error) {
     console.error("Error connecting to the server:", error);
     return [];
   }
 }
-async function getMovieDetails(imdbID) {
-  const url = `${OMDB_BASE_URL}?apikey=${OMDB_API_KEY}&i=${imdbID}&plot=full`;
-
+async function getMovieDetails(id) {
   try {
+    const url = buildUrl(`/movie/${id}`);
     const response = await fetch(url);
-    const data = await response.json();
-    return data.Response === "True" ? data : null;
+    return await response.json();
   } catch (error) {
     console.error("Error getting movie details:", error);
     return null;
   }
 }
-window.OMDB = {
+
+async function getMovieCredits(id) {
+  try {
+    const url = buildUrl(`/movie/${id}/credits`);
+    const response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.error("Error getting the credits:", error);
+    return { cast: [], crew: [] };
+  }
+}
+
+async function getMovieImages(id) {
+  try {
+    const url = buildUrl(`/movie/${id}/images`);
+    const response = await fetch(url);
+    return await response.json();
+  } catch (error) {
+    console.error("Error getting images:", error);
+    return { backdrops: [], posters: [] };
+  }
+}
+
+async function getPopular(page = 1) {
+  try {
+    const url = buildUrl("/movie/popular", { page });
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results || [];
+  } catch (error) {
+    console.error("Error getting popular movies:", error);
+    return [];
+  }
+}
+
+async function getTopRated(page = 1) {
+  try {
+    const url = buildUrl("/movie/top_rated", { page });
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results || [];
+  } catch (error) {
+    console.error("Error getting top rated movies", error);
+    return [];
+  }
+}
+window.TMDB = {
   searchMovies,
   getMovieDetails,
-  IMG_URL: "",
+  getMovieCredits,
+  getMovieImages,
+  getPopular,
+  getTopRated,
+  IMG_URL: TMDB_IMG,
+  IMG: TMDB_IMG,
   DEFAULT_POSTER:
     "https://via.placeholder.com/500x750/333333/ffffff?text=No+Image",
 };

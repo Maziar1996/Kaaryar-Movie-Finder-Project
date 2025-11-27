@@ -45,6 +45,7 @@ body.menu-open {
   font-weight: 700;
   color: #e50914;
   letter-spacing: -1px;
+  cursor: pointer;
 }
 
 .search-container {
@@ -97,7 +98,7 @@ body.menu-open {
   top: 100%;
   right: 0;
   background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blut(8px);
+  backdrop-filter: blur(8px);
   min-width: 190px;
   border-radius: 12px;
   padding: 6px 0;
@@ -161,8 +162,8 @@ body.menu-open {
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 24px;
   padding: 0 10px;
 }
 .movie-card {
@@ -265,11 +266,6 @@ body.menu-open {
   border-top: 1px solid #333;
 }
 
-@media (max-width: 992px) {
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
-}
 @media (max-width: 768px) {
   .header .container {
     flex-direction: row;
@@ -303,14 +299,12 @@ body.menu-open {
 }
 @media (max-width: 480px) {
   .movies-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .movie-card img {
     height: 240px;
   }
 }
-
-/* Hamburger Menu */
 
 .hamburger {
   display: none;
@@ -390,7 +384,7 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Loading... */
+/* Skeleton Loading... */
 
 .skeleton-card {
   background: #1a1a1a;

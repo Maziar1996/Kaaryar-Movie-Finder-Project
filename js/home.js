@@ -2,7 +2,6 @@ import { renderSkeleton, renderMovieCard, renderPagination } from "./ui.js";
 
 let currentPage = 1;
 const moviesPerPage = 20;
-const currentQuery = "top";
 
 async function loadMovies(page = 1) {
   const grid = document.getElementById("movies-grid");
@@ -10,22 +9,33 @@ async function loadMovies(page = 1) {
 
   renderSkeleton(grid, moviesPerPage);
 
-  const movies = await OMDB.searchMovies(currentQuery, page);
-  const detailsPromises = movies.map((m) => OMDB.getMovieDetails(m.imdbID));
-  const allDetails = await Promise.all(detailsPromises);
+  const movies = await TMDB.getTopRated(page);
 
   grid.innerHTML = "";
-  allDetails.forEach((details) => {
-    if (details) renderMovieCard(grid, details);
+
+  movies.forEach((movie) => {
+    if (!movie) return;
+
+    renderMovieCard(grid, {
+      Title: movie.title,
+      Year: movie.release_date?.split("-")[0] || "----",
+      Poster: movie.poster_path
+        ? `${TMDB.IMG_URL}w500${movie.poster_path}`
+        : TMDB.DEFAULT_POSTER,
+      imdbRating: movie.vote_average?.toFixed(1) || "-",
+      Genre: movie.genre_ids?.join(", "),
+      id: movie.id,
+    });
   });
 
   renderPagination(paginationContainer, page, loadMovies);
+
   currentPage = page;
 
   grid.scrollIntoView({ behavior: "smooth" });
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   loadMovies(currentPage);
 
   // Hamburger Menu
@@ -52,4 +62,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.body.classList.remove("menu-open");
     }
   });
+});
+
+document.querySelector(".logo").addEventListener("click", () => {
+  window.location.href = "index.html";
 });
