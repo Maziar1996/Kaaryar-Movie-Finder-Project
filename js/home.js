@@ -1,9 +1,10 @@
 import { renderSkeleton, renderMovieCard, renderPagination } from "./ui.js";
 
-let currentPage = 1;
+let currentPage =
+  parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
 const moviesPerPage = 20;
 
-async function loadMovies(page = 1) {
+async function loadMovies(page = currentPage) {
   const grid = document.getElementById("movies-grid");
   const paginationContainer = document.getElementById("pagination");
 
@@ -17,7 +18,7 @@ async function loadMovies(page = 1) {
     if (!movie) return;
 
     renderMovieCard(grid, {
-      Title: movie.title,
+      Title: movie.title || "Unknown Title",
       Year: movie.release_date?.split("-")[0] || "----",
       Poster: movie.poster_path
         ? `${TMDB.IMG_URL}w500${movie.poster_path}`
@@ -28,12 +29,28 @@ async function loadMovies(page = 1) {
     });
   });
 
-  renderPagination(paginationContainer, page, loadMovies);
+  const url = new URL(window.location);
+  url.searchParams.set("page", page);
+  window.history.pushState({}, "", url);
+  renderPagination(paginationContainer, page, goToPage);
 
   currentPage = page;
 
   grid.scrollIntoView({ behavior: "smooth" });
 }
+
+// No home page return, when refreshing.
+
+function goToPage(newPage) {
+  if (newPage >= 1) {
+    loadMovies(newPage);
+  }
+}
+window.addEventListener("popstate", () => {
+  const page =
+    parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+  loadMovies(page);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   loadMovies(currentPage);
