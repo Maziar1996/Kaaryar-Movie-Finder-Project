@@ -83,6 +83,18 @@ async function getTopRated(page = 1) {
     return [];
   }
 }
+
+async function getGenres() {
+  try {
+    const url = buildUrl("/genre/movie/list");
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.genres || [];
+  } catch (error) {
+    console.error("Error getting genres:", error);
+    return [];
+  }
+}
 window.TMDB = {
   searchMovies,
   getMovieDetails,
@@ -90,6 +102,7 @@ window.TMDB = {
   getMovieImages,
   getPopular,
   getTopRated,
+  getGenres,
   IMG_URL: TMDB_IMG,
   IMG: TMDB_IMG,
   DEFAULT_POSTER:

@@ -1,4 +1,10 @@
-import { renderSkeleton, renderMovieCard, renderPagination } from "./ui.js";
+import {
+  renderSkeleton,
+  renderMovieCard,
+  renderPagination,
+  setGenres,
+  getGenreNames,
+} from "./ui.js";
 
 let currentPage =
   parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
@@ -24,7 +30,7 @@ async function loadMovies(page = currentPage) {
         ? `${TMDB.IMG_URL}w500${movie.poster_path}`
         : TMDB.DEFAULT_POSTER,
       imdbRating: movie.vote_average?.toFixed(1) || "-",
-      Genre: movie.genre_ids?.join(", "),
+      Genre: getGenreNames(movie.genre_ids || []),
       id: movie.id,
     });
   });
@@ -52,7 +58,10 @@ window.addEventListener("popstate", () => {
   loadMovies(page);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const genresList = await TMDB.getGenres();
+  setGenres(genresList);
+
   loadMovies(currentPage);
 
   // Hamburger Menu
