@@ -80,7 +80,7 @@ function goToSlide(index) {
   const slides = document.querySelectorAll(".slide");
   const dots = document.querySelectorAll(".dot");
 
-  slides[currentSlide].classList.remove("actvie");
+  slides[currentSlide].classList.remove("active");
   dots[currentSlide].classList.remove("active");
 
   currentSlide = index;
@@ -97,7 +97,7 @@ function startAutoSlide() {
 
 function nextSlide() {
   const slides = document.querySelectorAll(".slide");
-  const dots = document.querySelectorAll("dot");
+  const dots = document.querySelectorAll(".dot");
 
   if (slides.length === 0 || dots.length === 0) return;
 
