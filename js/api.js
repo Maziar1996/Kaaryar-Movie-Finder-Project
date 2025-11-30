@@ -95,6 +95,18 @@ async function getGenres() {
     return [];
   }
 }
+
+async function getMovieReleaseDates(id) {
+  try {
+    const url = buildUrl(`/movie/${id}/release_dates`);
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.results || [];
+  } catch (error) {
+    console.error("Error getting release dates:", error);
+    return [];
+  }
+}
 window.TMDB = {
   searchMovies,
   getMovieDetails,
@@ -103,6 +115,7 @@ window.TMDB = {
   getPopular,
   getTopRated,
   getGenres,
+  getMovieReleaseDates,
   IMG_URL: TMDB_IMG,
   IMG: TMDB_IMG,
   DEFAULT_POSTER:

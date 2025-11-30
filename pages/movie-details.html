@@ -4,14 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details</title>
-
     <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/details.css" />
   </head>
   <body>
     <header class="header">
       <div class="container">
         <h1 class="logo desktop">Movie Finder</h1>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search For Movies & Series..."
+            autocomplete="off"
+          />
+          <button id="search-button">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="genre-dropdown desktop">
+          <button id="genre-button">Genres <i>Down</i></button>
+          <div id="genre-list" class="dropdown-content hidden"></div>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <button class="hamburger" id="hamburger-btn">☰</button>
       </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <h1 class="logo">MOVIE FINDER</h1>
+
+        <div class="genre-dropdown">
+          <button id="genre-button-mobile">Genres <i>Down</i></button>
+          <div id="genre-list-mobile" class="dropdown-content hidden"></div>
+        </div>
+      </div>
+
+      <div class="overlay" id="overlay"></div>
     </header>
 
     <main id="movie-details" class="movie-details-page">
@@ -20,6 +65,9 @@
       </div>
     </main>
     <script src="../js/api.js"></script>
-    <script type="module" src="../js/movie-details.js"></script>
+
+    <script type="module" src="../js/home.js"></script>
+
+    <script src="../js/movie-details.js"></script>
   </body>
 </html>
