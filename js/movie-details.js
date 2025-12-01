@@ -44,11 +44,15 @@ function renderMainStructure(container) {
     <div class="movie-body">
 
     <div class="top-row">
+    
       <div class="poster-col"></div>
+      
       <div class="info-col"></div>
+      
+      
       </div>
-
-      <div class="gallery-inside-body"></div>
+<div class="gallery-inside-body"></div>
+      
     </div>
 
     <div class="movie-cast"></div>
