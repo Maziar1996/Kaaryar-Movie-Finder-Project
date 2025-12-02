@@ -56,8 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!query) {
     titleEl.textContent = "Please enter a search term";
-    grid.innerHTML =
-      "<p style='text-align:center;padding:60px;color:#aaa;'>No search query provided.</p>";
+    grid.innerHTML = `<p style="display:flex;align-self=center;text-align:center; padding:60px;color:#aaa;">No search query provided.</p>`;
     return;
   }
 

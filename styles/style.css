@@ -492,7 +492,82 @@ button:hover {
   background: white;
   color: black;
 }
-
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border-radius: 12px;
+  margin-top: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+  border: 1px solid #333;
+}
+.search-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown-results {
+  padding: 8px 0;
+}
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.dropdown-item:hover {
+  background: #e50914;
+}
+.dropdown-item img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #333;
+}
+.dropdown-item .info {
+  flex: 1;
+}
+.dropdown-item .title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+}
+.dropdown-item .year {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+.dropdown-empty {
+  padding: 20px;
+  text-align: center;
+  color: #777;
+  font-size: 0.95rem;
+}
+.search-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+.search-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+.search-dropdown::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+/* Search Results Page */
+.search-results-page {
+  margin-top: 80px;
+}
 @media (max-width: 768px) {
   .header .container {
     flex-direction: row;
