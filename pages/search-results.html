@@ -3,19 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movies & Series</title>
+    <title>Search Results - Movie Finder</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
   </head>
   <body>
-    <!-- Navigation Bar -->
     <header class="header">
       <div class="container">
         <h1 class="logo desktop">Movie Finder</h1>
-        <!-- Search Bar -->
         <div class="search-container">
           <input
             type="text"
@@ -31,8 +29,6 @@
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
             >
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -40,41 +36,36 @@
           </button>
         </div>
         <div class="genre-dropdown desktop">
-          <button id="genre-button">Genres <i>Down</i></button>
+          <button id="genre-button">Genres ↓</button>
           <div id="genre-list" class="dropdown-content hidden"></div>
         </div>
-        <!-- Hamburger Menu -->
         <button class="hamburger" id="hamburger-btn">☰</button>
       </div>
-      <!-- Mobile Menu -->
+
       <div class="mobile-menu" id="mobile-menu">
         <h1 class="logo">MOVIE FINDER</h1>
         <div class="genre-dropdown">
-          <button id="genre-button-mobile">Genres <i>Down</i></button>
+          <button id="genre-button-mobile">Genres ↓</button>
           <div id="genre-list-mobile" class="dropdown-content hidden"></div>
         </div>
       </div>
       <div class="overlay" id="overlay"></div>
     </header>
-    <!-- Hero Section - Slideshow -->
-    <section id="hero" class="hero-section">
-      <div id="slider" class="slider"></div>
-    </section>
-    <!-- Movies List -->
+
     <main class="main-content">
       <div class="container">
-        <h2>Most Popular Movies & Series</h2>
+        <h2 id="search-title">Search Results</h2>
         <div id="movies-grid" class="movies-grid"></div>
         <div id="pagination" class="pagination"></div>
       </div>
     </main>
-    <!-- Footer -->
+
     <footer class="footer">
       <div class="container"><p>© MAB - 2025</p></div>
     </footer>
-    <script src="js/api.js"></script>
-    <script type="module" src="js/home.js"></script>
-    <script type="module" src="js/slider.js"></script>
-    <script type="module" src="js/search.js"></script>
+
+    <script src="../js/api.js"></script>
+    <script type="module" src="../js/ui.js"></script>
+    <script type="module" src="../js/search-results.js"></script>
   </body>
 </html>

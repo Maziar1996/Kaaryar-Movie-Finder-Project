@@ -41,8 +41,6 @@ async function loadMovies(page = currentPage) {
   renderPagination(paginationContainer, page, goToPage);
 
   currentPage = page;
-
-  grid.scrollIntoView({ behavior: "smooth" });
 }
 
 // No home page return, when refreshing.
@@ -60,6 +58,7 @@ window.addEventListener("popstate", () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const genresList = await TMDB.getGenres();
+
   setGenres(genresList);
 
   loadMovies(currentPage);
@@ -93,3 +92,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.querySelector(".logo").addEventListener("click", () => {
   window.location.href = "index.html";
 });
+
+window.loadMainContent = loadMovies;
