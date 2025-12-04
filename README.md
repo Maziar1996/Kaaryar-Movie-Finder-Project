@@ -17,7 +17,6 @@ Built with pure HTML, CSS &amp; JavaScript.
 | Live Search with Suggestions      | ✅ Done | Type → instant results dropdown                                       |
 | Hero Slider (Top 5 Popular)       | ✅ Done | Auto-play, dots navigation, backdrop images                           |
 | Movie Grid + Pagination           | ✅ Done | Top-rated movies with skeleton loading                                |
-| Header Blur Effect on Scroll      | ✅ Done | Transparent → solid + backdrop blur (Netflix-style)                   |
 | Genre Page with Sidebar & Sorting | ✅ Done | Load more, sort by popularity/rating/date                             |
 | Movie Details Page                | ✅ Done | Poster, cast, images, overview, runtime, etc.                         |
 | Search Results Page               | ✅ Done | Dedicated page with pagination                                        |
