@@ -1,5 +1,3 @@
-import { setGenres } from "./ui.js";
-
 const MAIN_GENRES = [
   { id: 28, name: "Action" },
   { id: 12, name: "Adventure" },
@@ -15,13 +13,9 @@ const MAIN_GENRES = [
   { id: 53, name: "Thriller" },
 ];
 
-async function initGenreDropdown() {
-  const genres = await window.TMDB.getGenres();
-
+function initGenreDropdown() {
   const desktopList = document.getElementById("genre-list");
   const mobileList = document.getElementById("genre-list-mobile");
-
-  if (!desktopList && !mobileList) return;
 
   const createLink = (genre) => {
     const a = document.createElement("a");
@@ -32,54 +26,64 @@ async function initGenreDropdown() {
     return a;
   };
 
-  [desktopList, mobileList].forEach((list) => {
-    if (list) {
-      list.innerHTML = "";
-      MAIN_GENRES.forEach((genre) => {
-        list.appendChild(createLink(genre));
-      });
-    }
-  });
+  if (desktopList) {
+    desktopList.innerHTML = "";
+    MAIN_GENRES.forEach((g) => desktopList.appendChild(createLink(g)));
+  }
+  if (mobileList) {
+    mobileList.innerHTML = "";
+    MAIN_GENRES.forEach((g) => mobileList.appendChild(createLink(g)));
+  }
 
   const desktopBtn = document.getElementById("genre-button");
   if (desktopBtn && desktopList) {
     const show = () => desktopList.classList.add("active");
     const hide = () => desktopList.classList.remove("active");
-
     desktopBtn.addEventListener("mouseenter", show);
     desktopList.addEventListener("mouseenter", show);
-    desktopBtn.addEventListener("mouseleave", () => {
-      setTimeout(() => {
-        if (!desktopList.matches(":hover")) hide();
-      }, 100);
-    });
+    desktopBtn.addEventListener("mouseleave", () =>
+      setTimeout(() => !desktopList.matches(":hover") && hide(), 100)
+    );
     desktopList.addEventListener("mouseleave", hide);
+    desktopBtn.addEventListener(
+      "click",
+      (e) =>
+        !e.target.closest("a") &&
+        (e.preventDefault(), (location.href = "/pages/genre.html"))
+    );
   }
 
   const mobileBtn = document.getElementById("genre-button-mobile");
-  if (mobileBtn && mobileList) {
-    mobileBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      mobileList.classList.toggle("active");
-    });
-  }
+  const mobileDropdown = document.getElementById("genre-list-mobile");
 
-  if (desktopBtn) {
-    desktopBtn.addEventListener("click", (e) => {
-      if (e.target.closest("a")) return;
+  if (mobileBtn && mobileDropdown) {
+    mobileBtn.addEventListener("click", function (e) {
       e.preventDefault();
-      window.location.href = "/pages/genre.html";
+      e.stopPropagation();
+
+      const isOpen = mobileDropdown.classList.contains("active");
+
+      if (isOpen) {
+        window.location.href = "/pages/genre.html";
+      } else {
+        mobileDropdown.classList.add("active");
+        mobileBtn.classList.add("active");
+        const icon = mobileBtn.querySelector("i");
+        if (icon) icon.classList.replace("fa-chevron-down", "fa-chevron-up");
+      }
     });
-  }
-  if (mobileBtn) {
-    mobileBtn.addEventListener("click", (e) => {
-      if (e.target.closest("a")) return;
-      e.preventDefault();
-      window.location.href = "/pages/genre.html";
+
+    document.addEventListener("click", function () {
+      if (mobileDropdown.classList.contains("active")) {
+        mobileDropdown.classList.remove("active");
+        mobileBtn.classList.remove("active");
+        const icon = mobileBtn.querySelector("i");
+        if (icon) icon.classList.replace("fa-chevron-up", "fa-chevron-down");
+      }
     });
+
+    mobileDropdown.addEventListener("click", (e) => e.stopPropagation());
   }
 }
 
 document.addEventListener("DOMContentLoaded", initGenreDropdown);
-
-export default initGenreDropdown;
