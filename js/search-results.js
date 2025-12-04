@@ -25,6 +25,7 @@ async function loadSearchResults(query, page = 1) {
 
   if (movies.length === 0) {
     titleEl.textContent = `No results found for "${query}"`;
+    grid.style.display = "block";
     grid.innerHTML = `<p style="text-align:center; padding:60px; color:#aaa;">No movies found.</p>`;
     paginationContainer.innerHTML = "";
     return;

@@ -47,7 +47,7 @@ body.scrolled .header {
   padding: 0 15px;
 }
 .logo.desktop {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
   color: rgb(231, 198, 66);
   letter-spacing: -1px;
@@ -67,7 +67,7 @@ body.scrolled .header {
   border-radius: 20px;
   font-size: 0.95rem;
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(3px);
   color: #fff;
   transition: 0.25s ease;
 }
@@ -152,6 +152,30 @@ body.scrolled .header {
   position: relative;
   overflow: hidden;
 }
+.hero-genres {
+  margin: 1rem 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.genre-pill {
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 60px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.genre-pill:hover {
+  background: rgb(231, 198, 66);
+  /* border-color: rgb(15, 15, 15); */
+  transform: translateY(-2px);
+}
 .main-content {
   padding: 50px 0;
 }
@@ -220,12 +244,12 @@ body.scrolled .header {
   flex-wrap: wrap;
 }
 .view-btn {
-  color: black;
+  color: rgb(15, 15, 15);
   background: rgb(231, 198, 66);
   border: none;
-  padding: 10px 14px;
+  padding: 10px 15px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 15px;
   cursor: pointer;
   font-weight: 500;
 }
@@ -234,7 +258,7 @@ body.scrolled .header {
 }
 
 .movie-rating {
-  color: rgb(231, 198, 66);
+  color: #aaa;
   font-weight: bold;
   font-size: 14px;
 }
@@ -246,13 +270,13 @@ body.scrolled .header {
   background: #333;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 25px 25px;
   margin: 0 10px;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
 }
 .pagination button.active {
-  color: yellow;
+  background: rgb(231, 198, 66);
 }
 .pagination button:disabled {
   opacity: 0.5;
@@ -298,7 +322,7 @@ body.scrolled .header {
 }
 
 .mobile-menu .logo {
-  color: yellow;
+  color: rgb(231, 198, 66);
   font-size: 28px;
 
   margin-bottom: 30px;
@@ -451,7 +475,7 @@ button:hover {
 }
 
 .hero-content h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 900;
 }
@@ -578,6 +602,15 @@ button:hover {
   }
   .logo.desktop {
     display: none;
+  }
+  .hero-genres {
+    justify-content: center;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .genre-pill {
+    font-size: 0.8rem;
+    padding: 5px 14px;
   }
   .mobile-menu .logo {
     display: block;

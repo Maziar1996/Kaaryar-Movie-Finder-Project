@@ -1,3 +1,4 @@
+import { getGenreNames } from "./ui.js";
 const TMDB = window.TMDB;
 
 const slider = document.getElementById("slider");
@@ -31,7 +32,13 @@ async function loadHeroMovies() {
 
       content.innerHTML = `
                 <h1>${movie.title}</h1>
-                <span></span>
+                <div class="hero-genres">
+                   ${getGenreNames(movie.genre_ids || [])
+                     .split(", ")
+                     .map((genre) => `<span class="genre-pill">${genre}</span>`)
+                     .join("")}
+                </div>
+
                 <p class="overview">${movie.overview || "..."}</p>
                 <div class="hero-buttons">
                 <button class="info-btn">View Info</button>
