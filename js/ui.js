@@ -1,5 +1,3 @@
-// Skeleton Loading - Render Movie Card - Pagination
-
 export function renderSkeleton(grid, count = 6) {
   grid.innerHTML = "";
 
@@ -109,8 +107,6 @@ export function renderMovieCard(grid, movie) {
   grid.appendChild(card);
 }
 
-// Pagination
-
 export function renderPagination(
   container,
   currentPage,
@@ -120,7 +116,7 @@ export function renderPagination(
   container.innerHTML = "";
 
   const prevBtn = document.createElement("button");
-  prevBtn.textContent = "<";
+  prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i>`;
   prevBtn.disabled = currentPage === 1;
   prevBtn.onclick = () => onPageChange(currentPage - 1);
   container.appendChild(prevBtn);
@@ -163,7 +159,7 @@ export function renderPagination(
     container.appendChild(last);
   }
   const nextBtn = document.createElement("button");
-  nextBtn.textContent = ">";
+  nextBtn.innerHTML = `<i class="fa-solid fa-chevron-right"></i>`;
   nextBtn.onclick = () => onPageChange(currentPage + 1);
   container.appendChild(nextBtn);
 }

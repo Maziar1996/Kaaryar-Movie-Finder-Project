@@ -3,7 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title id="page-title">Action Movies - Movie Finder</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/genre-page.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="../index.html" class="logo desktop">Movie Finder</a>
+
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search For Movies & Series..."
+            autocomplete="off"
+          />
+          <button id="search-button">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          <div class="search-dropdown" id="search-dropdown">
+            <div class="dropdown-results" id="dropdown-results"></div>
+          </div>
+        </div>
+        <div class="genre-dropdown desktop">
+          <button id="genre-button">
+            Genres <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div id="genre-list" class="dropdown-content"></div>
+          <div id="genre-list-mobile" class="dropdown-content"></div>
+        </div>
+
+        <button class="hamburger" id="hamburger-btn">☰</button>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="logo">MOVIE FINDER</a>
+        <div class="genre-dropdown">
+          <button id="genre-button-mobile">
+            Genres <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div id="genre-list-mobile" class="dropdown-content hidden"></div>
+        </div>
+      </div>
+      <div class="overlay" id="overlay"></div>
+    </header>
+    <main class="genre-main">
+      <div class="container">
+        <aside class="genre-sidebar">
+          <h3>Genres</h3>
+          <ul id="genre-sidebar-list"></ul>
+        </aside>
+        <section class="genre-content">
+          <div class="genre-header">
+            <h1 id="current-genre-name">Action</h1>
+            <div class="sort-filter">
+              <button id="sort-button" class="sort-btn">
+                <i class="fa-solid fa-filter"></i>
+                <span id="sort-text">Popularity</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div id="sort-dropdown" class="sort-dropdown">
+                <div class="sort-option" data-value="popularity.desc">
+                  Popularity
+                </div>
+                <div class="sort-option" data-value="vote_average.desc">
+                  Ranking
+                </div>
+                <div class="sort-option" data-value="release_date.desc">
+                  Newest First
+                </div>
+                <div class="sort-option" data-value="title.asc">
+                  Title (A-Z)
+                </div>
+              </div>
+              <span id="total-results"></span>
+            </div>
+          </div>
+
+          <div id="genre-movies-grid" class="genre-movies-grid"></div>
+        </section>
+      </div>
+      <div
+        id="load-more-container"
+        class="load-more-container"
+        style="margin: 40px 0"
+      >
+        <button id="load-more-btn" class="load-more-btn">
+          Show more results
+        </button>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container"><p>© MAB - 2025</p></div>
+    </footer>
+    <script src="../js/api.js"></script>
+    <script type="module" src="../js/ui.js"></script>
+    <script type="module" src="../js/genre-dropdown.js"></script>
+    <script type="module" src="../js/common-search.js"></script>
+    <script type="module" src="../js/genre-page.js"></script>
+  </body>
 </html>

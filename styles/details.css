@@ -26,7 +26,6 @@
   text-align: left;
 }
 .movie-meta {
-  color: #aaa;
   font-size: 15px;
   display: flex;
   gap: 18px;
@@ -35,6 +34,7 @@
 
 .meta-item {
   color: #ddd;
+  font-weight: 700;
 }
 .meta-sep {
   color: #888;
@@ -77,20 +77,20 @@
 .info-label {
   width: 95px;
   color: #bfbfbf;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 1rem;
 }
 .info-value {
   color: #e0e0e0;
   flex: 1;
   line-height: 1.65;
-  font-size: 0.97rem;
+  font-size: 1.1rem;
 }
 .info-plot {
   margin: -4px;
   line-height: 1.7;
   color: #d0d0d0;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
 }
 .gallery-inside-body {
   display: flex;
