@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Results - Movie Finder</title>
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
@@ -13,7 +17,7 @@
   <body>
     <header class="header">
       <div class="container">
-        <h1 class="logo desktop">Movie Finder</h1>
+        <a href="../index.html" class="logo desktop">Movie Finder</a>
         <div class="search-container">
           <input
             type="text"
@@ -34,9 +38,15 @@
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
+          <div class="search-dropdown" id="search-dropdown">
+            <div class="dropdown-results" id="dropdown-results"></div>
+          </div>
         </div>
+
         <div class="genre-dropdown desktop">
-          <button id="genre-button">Genres ↓</button>
+          <button id="genre-button">
+            Genres <i class="fa-solid fa-chevron-down"></i>
+          </button>
           <div id="genre-list" class="dropdown-content hidden"></div>
         </div>
         <button class="hamburger" id="hamburger-btn">☰</button>
@@ -66,8 +76,7 @@
 
     <script src="../js/api.js"></script>
     <script type="module" src="../js/ui.js"></script>
-    <script type="module" src="js/search.js"></script>
     <script type="module" src="../js/search-results.js"></script>
-    <script type="module" src="../js/live-search.js"></script>
+    <script type="module" src="../js/common-search.js"></script>
   </body>
 </html>

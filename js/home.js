@@ -43,8 +43,6 @@ async function loadMovies(page = currentPage) {
   currentPage = page;
 }
 
-// No home page return, when refreshing.
-
 function goToPage(newPage) {
   if (newPage >= 1) {
     loadMovies(newPage);
@@ -62,8 +60,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   setGenres(genresList);
 
   loadMovies(currentPage);
-
-  // Hamburger Menu
 
   const hamburgerBtn = document.getElementById("hamburger-btn");
   const mobileMenu = document.getElementById("mobile-menu");

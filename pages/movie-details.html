@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/details.css" />
   </head>
   <body>
     <header class="header">
       <div class="container">
-        <h1 class="logo desktop">Movie Finder</h1>
+        <a href="../index.html" class="logo desktop">Movie Finder</a>
 
         <div class="search-container">
           <input
@@ -34,10 +38,15 @@
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
+          <div class="search-dropdown" id="search-dropdown">
+            <div class="dropdown-results" id="dropdown-results"></div>
+          </div>
         </div>
 
         <div class="genre-dropdown desktop">
-          <button id="genre-button">Genres <i>Down</i></button>
+          <button id="genre-button">
+            Genres <i class="fa-solid fa-chevron-down"></i>
+          </button>
           <div id="genre-list" class="dropdown-content hidden"></div>
         </div>
 
@@ -45,10 +54,12 @@
       </div>
 
       <div class="mobile-menu" id="mobile-menu">
-        <h1 class="logo">MOVIE FINDER</h1>
+        <a href="../index.html" class="logo">MOVIE FINDER</a>
 
         <div class="genre-dropdown">
-          <button id="genre-button-mobile">Genres <i>Down</i></button>
+          <button id="genre-button-mobile">
+            Genres <i class="fa-solid fa-chevron-down"></i>
+          </button>
           <div id="genre-list-mobile" class="dropdown-content hidden"></div>
         </div>
       </div>
@@ -67,7 +78,7 @@
       </div>
     </footer>
     <script src="../js/api.js"></script>
-
     <script type="module" src="../js/movie-details.js"></script>
+    <script type="module" src="../js/common-search.js"></script>
   </body>
 </html>

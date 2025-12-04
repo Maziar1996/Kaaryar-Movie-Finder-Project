@@ -31,15 +31,15 @@ async function loadHeroMovies() {
 
       content.innerHTML = `
                 <h1>${movie.title}</h1>
+                <span></span>
                 <p class="overview">${movie.overview || "..."}</p>
                 <div class="hero-buttons">
-                <button class="play-btn">Play</button>
                 <button class="info-btn">View Info</button>
                 </div>
                 `;
 
       content.querySelector(".info-btn").onclick = () => {
-        window.location.href = `pages/movie-details.html?id=${movie.id}`;
+        window.location.href = `/pages/movie-details.html?id=${movie.id}`;
       };
       slide.appendChild(content);
       slider.appendChild(slide);

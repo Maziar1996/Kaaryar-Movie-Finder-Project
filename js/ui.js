@@ -97,7 +97,7 @@ export function renderMovieCard(grid, movie) {
   viewBtn.textContent = "View Info";
   viewBtn.classList.add("view-btn");
   viewBtn.onclick = () => {
-    window.location.href = `pages/movie-details.html?id=${movie.id}`;
+    window.location.href = `/pages/movie-details.html?id=${movie.id}`;
   };
 
   bottomRow.appendChild(rating);
