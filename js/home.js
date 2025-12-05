@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelectorAll(".logo").forEach((logo) => {
     logo.addEventListener("click", (e) => {
       e.preventDefault();
-      window.location.href = "/index.html";
+      window.location.href = "index.html";
     });
   });
 });

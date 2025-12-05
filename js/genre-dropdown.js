@@ -19,7 +19,7 @@ function initGenreDropdown() {
 
   const createLink = (genre) => {
     const a = document.createElement("a");
-    a.href = `/pages/genre.html?id=${genre.id}&name=${encodeURIComponent(
+    a.href = `pages/genre.html?id=${genre.id}&name=${encodeURIComponent(
       genre.name
     )}`;
     a.textContent = genre.name;
@@ -49,7 +49,7 @@ function initGenreDropdown() {
       "click",
       (e) =>
         !e.target.closest("a") &&
-        (e.preventDefault(), (location.href = "/pages/genre.html"))
+        (e.preventDefault(), (location.href = "pages/genre.html"))
     );
   }
 
@@ -64,7 +64,7 @@ function initGenreDropdown() {
       const isOpen = mobileDropdown.classList.contains("active");
 
       if (isOpen) {
-        window.location.href = "/pages/genre.html";
+        window.location.href = "pages/genre.html";
       } else {
         mobileDropdown.classList.add("active");
         mobileBtn.classList.add("active");
