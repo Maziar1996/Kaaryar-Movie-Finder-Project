@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details</title>
+    <base href="/" data-github-pages="" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -85,5 +86,14 @@
     <script type="module" src="../js/common-search.js"></script>
     <script type="module" src="../js/mobile-menu.js"></script>
     <script type="module" src="../js/genre-dropdown.js"></script>
+    <script>
+      if (
+        location.protocol === "file:" ||
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1"
+      ) {
+        document.querySelector("base")?.removeAttribute("href");
+      }
+    </script>
   </body>
 </html>
