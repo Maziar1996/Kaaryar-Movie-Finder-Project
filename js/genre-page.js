@@ -110,7 +110,7 @@ function renderGenreMovieCard(movie) {
 
   card.style.cursor = "pointer";
   card.addEventListener("click", () => {
-    window.location.href = `pages/movie-details.html?id=${movie.id}`;
+    window.location.href = `/pages/movie-details.html?id=${movie.id}`;
   });
 
   moviesGrid.appendChild(card);
